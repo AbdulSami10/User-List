@@ -4,9 +4,9 @@ import UsersList from './UsersList';
 
 const MainUser = (props) => {
   const [usersList, setUsersList] = useState([]);
-  const AddUserHandler = (userName, userAge) => {
+  const AddUserHandler = (userName, userfullname, userAge) => {
     setUsersList((prevUsersList) => {
-      return [...prevUsersList, {name: userName, age: userAge, id: Math.random().toString()}];
+      return [...prevUsersList, {name: userName, fullname: userfullname, age: userAge, id: Math.random().toString()}];
     });
   };
   return (

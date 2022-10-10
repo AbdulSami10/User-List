@@ -24,3 +24,7 @@
   outline: none;
   border-color: #4f005f;
 }
+.input p {
+  font-weight: bolder;
+  color: darkgreen;
+}

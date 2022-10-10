@@ -1,15 +1,24 @@
 import React from 'react';
 import Card from '../UI/Card';
-import classes from './UsersList.module.css';
+import './UsersList.css';
+// import {FaUserEdit} from 'react-icons/fa';
+import {AiOutlineUserDelete, AiOutlineEdit} from 'react-icons/ai';
 
 const UsersList = (props) => {
   return (
-    <Card className={classes.users}>
+    <Card className="users">
       <ul>
         {props.users.map((user) => (
-          <li key={user.id}>
-            {user.name}({user.age} Years Old)
-          </li>
+          <span className="user-wrapper">
+            <li key={user.id}>
+              username: {user.name}
+              <br />
+              fullname:{user.fullname}
+              <br />({user.age} Years Old)
+            </li>
+            <AiOutlineEdit className="user-edit-icon" />
+            <AiOutlineUserDelete className="user-delete-icon" />
+          </span>
         ))}
       </ul>
     </Card>

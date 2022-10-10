@@ -1,0 +1,47 @@
+.users {
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 40rem;
+  background-color: white;
+}
+
+.users ul {
+  list-style: none;
+}
+
+.users li {
+  /* border: 1px solid #ccc; */
+  margin: 0.5rem 0;
+  /* padding: 0.5rem; */
+  margin-right: 100px;
+}
+.user-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.user-edit-icon {
+  font-size: 25px;
+  margin-top: 12px;
+  transition: 0.25s;
+}
+.user-edit-icon:hover {
+  color: green;
+  cursor: pointer;
+}
+.user-delete-icon {
+  font-size: 25px;
+  margin-top: 12px;
+  transition: 0.25s;
+}
+
+.user-delete-icon:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.card {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 10px;
+  margin: 0 100px;
+}
