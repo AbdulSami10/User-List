@@ -23,6 +23,7 @@ const AddUser = (props) => {
     }
     if (enteredUsername === 'sami') {
       setBanConfrm(true);
+      setConfrmBtn(false);
       return;
     }
 
