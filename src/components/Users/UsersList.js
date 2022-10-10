@@ -3,6 +3,9 @@ import Card from '../UI/Card';
 import './UsersList.css';
 // import {FaUserEdit} from 'react-icons/fa';
 import {AiOutlineUserDelete, AiOutlineEdit} from 'react-icons/ai';
+import {FcAcceptDatabase} from 'react-icons/fc';
+import {FcConferenceCall} from 'react-icons/fc';
+import {FaUser} from 'react-icons/fa';
 
 const UsersList = (props) => {
   return (
@@ -11,13 +14,16 @@ const UsersList = (props) => {
         {props.users.map((user) => (
           <span className="user-wrapper">
             <li key={user.id}>
-              username: {user.name}
+              <FaUser />
+              {user.name}
               <br />
-              fullname:{user.fullname}
-              <br />({user.age} Years Old)
+              <FcConferenceCall />
+              {user.fullname}
+              <br />
+              <FcAcceptDatabase /> ({user.age} Years Old)
             </li>
             <AiOutlineEdit className="user-edit-icon" />
-            <AiOutlineUserDelete className="user-delete-icon" />
+            <AiOutlineUserDelete onClick={props.onDelete} className="user-delete-icon" />
           </span>
         ))}
       </ul>

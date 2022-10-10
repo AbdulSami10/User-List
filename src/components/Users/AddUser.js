@@ -3,6 +3,9 @@ import Card from '../UI/Card';
 import classes from './AddUser.module.css';
 import Button from '../UI/Button';
 import ErrorModal from '../UI/ErrorModal';
+import {FcAddDatabase} from 'react-icons/fc';
+import {FcConferenceCall} from 'react-icons/fc';
+import {FaUser} from 'react-icons/fa';
 
 const AddUser = (props) => {
   const [enteredUsername, setEnteredUsername] = useState('');
@@ -94,18 +97,27 @@ const AddUser = (props) => {
       {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />}
       <Card className={classes.input}>
         <form onSubmit={AddUserHandler}>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">
+            <FaUser className={classes.icon} />
+            Username
+          </label>
           <input
             id="username"
             type="text"
             value={enteredUsername}
             onChange={usernameChangeHandler}
             onClick={usernamBanHandler}
-            maxLength="8"
+            maxLength="16"
           />
-          <label htmlFor="fullname">fullname</label>
+          <label htmlFor="fullname">
+            <FcConferenceCall className={classes.icon} />
+            Full Name
+          </label>
           <input id="fullname" type="text" value={enterdFullname} onChange={fullnameChangeHandler} max="256" />
-          <label htmlFor="age">Age (Years)</label>
+          <label htmlFor="age">
+            <FcAddDatabase className={classes.icon} />
+            Age (Years)
+          </label>
           <input id="age" type="number" value={enteredAge} onChange={ageChangeHandler} />
           <Button type="button" onClick={confirmHanlder}>
             Add User
