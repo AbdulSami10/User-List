@@ -5,27 +5,31 @@ import UsersList from './UsersList';
 const MainUser = (props) => {
   const [usersList, setUsersList] = useState([]);
   const AddUserHandler = (userName, userfullname, userAge) => {
-    setUsersList((prevUsersList) => {
-      return [
-        ...prevUsersList,
-        {name: userName.toLowerCase(), fullname: userfullname, age: userAge, id: Math.random().toString()},
-      ];
-      // let find = setUsersList.find((s) => s.userName === userName);
-      // console.log(find);
+    let find = usersList.find((c) => c.username === userName);
+    console.log(find);
+    if (find === undefined) {
+      setUsersList((prevUsersList) => {
+        return [
+          ...prevUsersList,
+          {username: userName.toLowerCase(), fullname: userfullname, age: userAge, id: Math.random().toString()},
+        ];
+      });
+    } else {
+      console.log('error');
+    }
+  };
+
+  // const deleteUserHandler = (indx) => {
+  //   usersList.splice(indx, 1);
+  //   setUsersList([...usersList]);
+  // };
+  const deleteUserHandler = (userName) => {
+    setUsersList((prevGoals) => {
+      const updatedGoals = prevGoals.filter((goal) => goal.username !== userName);
+      return updatedGoals;
     });
-    // let name = [{name: 'kameena', fullname: '', age: ''}];
-    // let find = usersList.find((c) => c.userName === name);
-    // console.log(find);
-    // if (find === undefined) {
-    //   console.log('Not present');
-    // } else {
-    //   console.log(find.userName);
-    // }
   };
-  const deleteUserHandler = (indx) => {
-    usersList.splice(indx, 1);
-    setUsersList([...usersList]);
-  };
+
   return (
     <div>
       <AddUser onAddUser={AddUserHandler} />

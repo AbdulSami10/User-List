@@ -17,12 +17,19 @@ const AddUser = (props) => {
 
   const confirmHanlder = (event) => {
     setConfrmBtn(true);
+
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0 || enterdFullname.trim().length === 0) {
       setError({
         title: 'invalid input',
         message: 'Please enter valid information',
       });
       return;
+    }
+    if (enterdFullname.trim().length > 128) {
+      setError({
+        title: 'InValid Name',
+        message: 'Please enter your name in given length',
+      });
     }
     if (
       enteredUsername === 'sami' ||
@@ -42,8 +49,10 @@ const AddUser = (props) => {
         title: 'invalid age',
         message: 'Please enter a valid age (greater than 0)',
       });
+
       return;
     }
+
     // console.log(enteredUsername, enteredAge, enterdFullname);
     // props.onAddUser(enteredUsername, enterdFullname, enteredAge);
     // setEnteredAge('');
@@ -113,7 +122,7 @@ const AddUser = (props) => {
             <FcConferenceCall className={classes.icon} />
             Full Name
           </label>
-          <input id="fullname" type="text" value={enterdFullname} onChange={fullnameChangeHandler} max="256" />
+          <input id="fullname" type="text" value={enterdFullname} onChange={fullnameChangeHandler} />
           <label htmlFor="age">
             <FcAddDatabase className={classes.icon} />
             Age (Years)
