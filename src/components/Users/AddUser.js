@@ -25,6 +25,7 @@ const AddUser = (props) => {
       setBanConfrm(true);
       return;
     }
+
     if (enteredAge > 100) {
       setError({
         title: 'invalid age',
