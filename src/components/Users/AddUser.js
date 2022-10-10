@@ -21,7 +21,14 @@ const AddUser = (props) => {
       });
       return;
     }
-    if (enteredUsername === 'sami') {
+    if (
+      enteredUsername === 'sami' ||
+      enteredUsername === 'maaz' ||
+      enteredUsername === 'wirzan' ||
+      enteredUsername === 'AbdulSami' ||
+      enteredUsername === 'ABDULSAMI' ||
+      enteredUsername === 'Sami'
+    ) {
       setBanConfrm(true);
       setConfrmBtn(false);
       return;
@@ -64,6 +71,9 @@ const AddUser = (props) => {
     setEnteredFullname('');
     setConfrmBtn(false);
   };
+  const usernamBanHandler = () => {
+    setBanConfrm(false);
+  };
 
   const usernameChangeHandler = (event) => {
     setEnteredUsername(event.target.value);
@@ -85,7 +95,14 @@ const AddUser = (props) => {
       <Card className={classes.input}>
         <form onSubmit={AddUserHandler}>
           <label htmlFor="username">Username</label>
-          <input id="username" type="text" value={enteredUsername} onChange={usernameChangeHandler} maxLength="8" />
+          <input
+            id="username"
+            type="text"
+            value={enteredUsername}
+            onChange={usernameChangeHandler}
+            onClick={usernamBanHandler}
+            maxLength="8"
+          />
           <label htmlFor="fullname">fullname</label>
           <input id="fullname" type="text" value={enterdFullname} onChange={fullnameChangeHandler} max="256" />
           <label htmlFor="age">Age (Years)</label>
