@@ -55,6 +55,7 @@ const AddUser = (props) => {
     if (props.usrNameExist === true) {
       setConfrmBtn(false);
       setUsrnameAlready(true);
+      return;
     }
 
     if (enteredAge > 100) {
