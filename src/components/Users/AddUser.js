@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Card from '../UI/Card';
-import classes from './AddUser.module.css';
+import './AddUser.css';
 import Button from '../UI/Button';
 import ErrorModal from '../UI/ErrorModal';
 import {FcAddDatabase} from 'react-icons/fc';
@@ -14,6 +14,7 @@ const AddUser = (props) => {
   const [error, setError] = useState();
   const [confrmBtn, setConfrmBtn] = useState(false);
   const [banConfrm, setBanConfrm] = useState(false);
+  const [usrnameAlready, setUsrnameAlready] = useState(false);
 
   const confirmHanlder = (event) => {
     setConfrmBtn(true);
@@ -30,6 +31,14 @@ const AddUser = (props) => {
         title: 'InValid Name',
         message: 'Please enter your name in given length',
       });
+      return;
+    }
+    if (enteredUsername.trim().length < 4) {
+      setError({
+        title: 'enter valid username',
+        message: 'please enter your username between 4 and 8 alphabets',
+      });
+      return;
     }
     if (
       enteredUsername === 'sami' ||
@@ -42,6 +51,10 @@ const AddUser = (props) => {
       setBanConfrm(true);
       setConfrmBtn(false);
       return;
+    }
+    if (props.usrNameExist === true) {
+      setConfrmBtn(false);
+      setUsrnameAlready(true);
     }
 
     if (enteredAge > 100) {
@@ -83,8 +96,10 @@ const AddUser = (props) => {
     setEnteredFullname('');
     setConfrmBtn(false);
   };
+
   const usernamBanHandler = () => {
     setBanConfrm(false);
+    setUsrnameAlready(false);
   };
 
   const usernameChangeHandler = (event) => {
@@ -102,12 +117,12 @@ const AddUser = (props) => {
   };
 
   return (
-    <div>
+    <React.Fragment>
       {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />}
-      <Card className={classes.input}>
+      <Card className="input">
         <form onSubmit={AddUserHandler}>
           <label htmlFor="username">
-            <FaUser className={classes.icon} />
+            <FaUser className="icon" />
             Username
           </label>
           <input
@@ -119,12 +134,12 @@ const AddUser = (props) => {
             maxLength="16"
           />
           <label htmlFor="fullname">
-            <FcConferenceCall className={classes.icon} />
+            <FcConferenceCall className="icon" />
             Full Name
           </label>
           <input id="fullname" type="text" value={enterdFullname} onChange={fullnameChangeHandler} />
           <label htmlFor="age">
-            <FcAddDatabase className={classes.icon} />
+            <FcAddDatabase className="icon" />
             Age (Years)
           </label>
           <input id="age" type="number" value={enteredAge} onChange={ageChangeHandler} />
@@ -132,11 +147,12 @@ const AddUser = (props) => {
             Add User
           </Button>
           {confrmBtn && <Button type="submit">Confirm</Button>}
-          {confrmBtn && <p>confirm for sign-up</p>}
-          {banConfrm && <p>this username has banned</p>}
+          {confrmBtn && <p className="allow">confirm for sign-up</p>}
+          {banConfrm && <p className="ban">This Username Has Banned</p>}
+          {usrnameAlready && <p className="ban">Username already exist</p>}
         </form>
       </Card>
-    </div>
+    </React.Fragment>
   );
 };
 export default AddUser;

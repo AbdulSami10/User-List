@@ -4,6 +4,7 @@ import UsersList from './UsersList';
 
 const MainUser = (props) => {
   const [usersList, setUsersList] = useState([]);
+  const [usrnmAlrdy, setUsrnmAlrdy] = useState(false);
   const AddUserHandler = (userName, userfullname, userAge) => {
     let find = usersList.find((c) => c.username === userName);
     console.log(find);
@@ -15,7 +16,7 @@ const MainUser = (props) => {
         ];
       });
     } else {
-      console.log('error');
+      setUsrnmAlrdy(true);
     }
   };
 
@@ -32,7 +33,7 @@ const MainUser = (props) => {
 
   return (
     <div>
-      <AddUser onAddUser={AddUserHandler} />
+      <AddUser usrNameExist={usrnmAlrdy} onAddUser={AddUserHandler} />
       <UsersList users={usersList} onDelete={deleteUserHandler} />
     </div>
   );
